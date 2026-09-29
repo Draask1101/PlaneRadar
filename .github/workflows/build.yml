@@ -51,10 +51,10 @@ jobs:
       - name: Download Halo-F1 driver files
         run: |
           BASE="https://raw.githubusercontent.com/FabioRoss/Halo-F1/main"
-          curl -fsSL "$BASE/lv_conf.h"         -o lv_conf.h
-          curl -fsSL "$BASE/lv_bb_spi_lcd.h"   -o lv_bb_spi_lcd.h
-          curl -fsSL "$BASE/lv_bb_spi_lcd.cpp" -o lv_bb_spi_lcd.cpp
-          curl -fsSL "$BASE/touchscreen.h"     -o touchscreen.h
+          curl -fSL "$BASE/lv_conf.h"         -o lv_conf.h || { echo "FEHLER: lv_conf.h"; exit 1; }
+          curl -fSL "$BASE/lv_bb_spi_lcd.h"   -o lv_bb_spi_lcd.h || { echo "FEHLER: lv_bb_spi_lcd.h"; exit 1; }
+          curl -fSL "$BASE/lv_bb_spi_lcd.cpp" -o lv_bb_spi_lcd.cpp || { echo "FEHLER: lv_bb_spi_lcd.cpp"; exit 1; }
+          curl -fSL "$BASE/touchscreen.h"     -o touchscreen.h || { echo "FEHLER: touchscreen.h"; exit 1; }
 
           # lv_bb_spi_lcd.cpp is compiled as a sketch .cpp file.
           # Arduino only auto-injects Arduino.h into .ino files, so uint16_t
